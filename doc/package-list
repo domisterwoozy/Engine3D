@@ -1,0 +1,8 @@
+com.jacobschneider.engine
+com.jacobschneider.engine.framework
+com.jacobschneider.engine.input
+com.jacobschneider.engine.math
+com.jacobschneider.engine.math.boundingvolumes
+com.jacobschneider.engine.math.geometry
+com.jacobschneider.engine.math.vectorcalc
+com.jacobschneider.engine.physics
