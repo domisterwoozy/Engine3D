@@ -9,9 +9,20 @@ import com.jacobschneider.engine.math.Vector3;
  *
  */
 public class Segment {
+	/**
+	 * one of the points in the segment
+	 */
 	public final Vector3 a;
+	/**
+	 * the other point in the segment
+	 */
 	public final Vector3 b;
-
+	
+	/**
+	 * The order of the two points do not matter. A segment does not have direction.
+	 * @param a one of the points in the segment
+	 * @param b the other point in the segment
+	 */
 	public Segment(Vector3 a, Vector3 b) {
 		this.a = a;
 		this.b = b;

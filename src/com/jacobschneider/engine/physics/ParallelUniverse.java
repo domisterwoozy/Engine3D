@@ -188,4 +188,9 @@ public class ParallelUniverse implements Universe,Drawable {
 		throw new UnsupportedOperationException("Not yet implemented");
 		
 	}
+
+	@Override
+	public void addBodyPotential(Body b, ScalerField s) {
+		throw new UnsupportedOperationException("Not yet implemented");		
+	}
 }

@@ -34,4 +34,14 @@ public interface Universe {
 	 */
 	public void addScalerPotential(ScalerField s);
 
+	/**
+	 * Adds a scaler potential to a {@link Body} in the universe. If the body does not exist
+	 * in the universe throws an {@link IllegalArgumentException}. The origin of the scaler field is updated
+	 * to align with the body's position before each frame. If a body already contains a potential the original one
+	 * will be overwritten.
+	 * @param b the body to attach the scaler potential to
+	 * @param s the scaler potential
+	 */
+	public void addBodyPotential(Body b, ScalerField s);
+
 }

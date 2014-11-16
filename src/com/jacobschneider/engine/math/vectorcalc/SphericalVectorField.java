@@ -6,20 +6,17 @@ public class SphericalVectorField extends AbstractVectorField {
 
 	@Override
 	public Vector3 getValue(Vector3 point) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 	@Override
 	public Vector3 curl(Vector3 point) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 	@Override
 	public double divergence(Vector3 point) {
-		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 }

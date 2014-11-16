@@ -119,8 +119,10 @@ public class SphericalScalerField extends AbstractScalerField {
 	 * @return the resulting value
 	 */
 	public double dr2fdr(double[] spherCoords) {
-		return Math.pow(a*A*spherCoords[0], a-1);		
+		return Math.pow((a+2)*A*spherCoords[0], a + 1);		
 	}
+	
+
 
 
 }

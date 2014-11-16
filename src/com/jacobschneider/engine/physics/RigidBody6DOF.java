@@ -206,11 +206,6 @@ public class RigidBody6DOF implements PhysicsBody {
 	}
 	
 	@Override
-	public final Vector3 getP() {
-		return P;
-	}
-	
-	@Override
 	public final double getEnergy() {
 		Vector3 n = omega.normalize(); // direction of angular velocity
 		double scalerInertia = scalerInertia(n);

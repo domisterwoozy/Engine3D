@@ -15,19 +15,20 @@ import com.jacobschneider.engine.math.Vector3;
  */
 public interface PhysicsBody {
 	/**
-	 * An enum representing a possible axis of rotation.
+	 * An enum representing a Cartesian axis
 	 * @author Jacob
 	 *
 	 */
 	public static enum Axis {X_AXIS, Y_AXIS, Z_AXIS};
+	
 	// the setters
 	/**
 	 * Enacts an instantaneous impulse on this body. Collisions use this method to instantaneously change
 	 * the momentums of this {@link PhysicsBody}.
-	 * @param force Instantaneous force with units Force*Time
+	 * @param impulse instantaneous force with units Force*Time
 	 * @param relativePos Position of the impulse relative to the center of mass of this body
 	 */
-	public void enactImpulse(Vector3 force, Vector3 relativePos);
+	public void enactImpulse(Vector3 impulse, Vector3 relativePos);
 
 	/**
 	 * Adds a permanent force and torque to this body
@@ -148,14 +149,36 @@ public interface PhysicsBody {
 	 */
 	public Matrix3 getInvI();
 
+	/**
+	 * The world position of the center of mass of this body.
+	 * @return position of the center of mass
+	 */
 	public Vector3 getX();
 
+	/**
+	 * The orientation of this body in world coordinates
+	 * @return a {@link Quaternion} that represents this orientation
+	 */
 	public Quaternion getQ();
 
+	/**
+	 * The orientation of this body in world coordinates
+	 * @return a {@link Matrix3} that represents this orientation
+	 */
 	public Matrix3 getR();
 
-	public Vector3 getP();
+	/**
+	 * The linear velocity of the center of mass of the body
+	 * @return the velocity in world coordinates
+	 */
+	public Vector3 getVel();
 
+	/**
+	 * The angular velocity of the body
+	 * @return the angular velocity in world coordinates
+	 */
+	public Vector3 getOmega();
+	
 	/**
 	 * Calculates and returns the total kinetic energy of the {@link PhysicsBody}. 
 	 * This includes the translational and rotational energy.
@@ -169,11 +192,6 @@ public interface PhysicsBody {
 	 * @return Velocity of the point
 	 */
 	public Vector3 getSurfaceVelocity(Vector3 rp);
-	
-
-	public Vector3 getVel();
-
-	public Vector3 getOmega();
 	
 
 	/**
