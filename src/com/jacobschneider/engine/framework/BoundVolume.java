@@ -1,4 +1,4 @@
-package com.jacobschneider.engine.math.boundingvolumes;
+package com.jacobschneider.engine.framework;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,14 +7,18 @@ import java.util.Set;
 
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategyContainer.CircleCircleOverlap;
-import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategyContainer.SphereCircleOverlap;
-import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategyContainer.SphereSphereOverlap;
+import com.jacobschneider.engine.math.boundingvolumes.BoundCircle;
+import com.jacobschneider.engine.math.boundingvolumes.BoundNull;
+import com.jacobschneider.engine.math.boundingvolumes.BoundSphere;
+import com.jacobschneider.engine.math.boundingvolumes.BoundVolumePair;
+import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategies.CircleCircleOverlap;
+import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategies.SphereCircleOverlap;
+import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategies.SphereSphereOverlap;
 import com.jacobschneider.engine.physics.Body;
-import com.jacobschneider.engine.physics.Shape;
+import com.jacobschneider.engine.physics.RigidShape;
 
 /**
- * Represents a bounding volume around a physical object (usually a {@link Shape} object).
+ * Represents a bounding volume around a physical object (usually a {@link RigidShape} object).
  * Objects of this type should be mutable and created once at the beginning of a {@link Body}'s existence.
  * If you create a subclass of this class you MUST add corresponding overlap strategies to {@link #putStrategy(OverlapStrategy)}
  * BEFORE you instantiate an object of that subclass.

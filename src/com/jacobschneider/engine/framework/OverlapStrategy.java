@@ -1,4 +1,4 @@
-package com.jacobschneider.engine.math.boundingvolumes;
+package com.jacobschneider.engine.framework;
 
 import com.jacobschneider.engine.math.boundingvolumes.BoundVolumePair;
 

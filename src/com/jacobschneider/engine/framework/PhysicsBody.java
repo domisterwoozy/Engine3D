@@ -1,13 +1,18 @@
-package com.jacobschneider.engine.physics;
+package com.jacobschneider.engine.framework;
 
 import java.util.Set;
 
 import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.geometry.Manifold;
-import com.jacobschneider.engine.math.geometry.Segment;
 
+/**
+ * This interface describes the physics of a body. This includes the number of degrees of freedom and how these
+ * degrees of freedom respond to forces on the body.
+ * 
+ * @author Jacob
+ *
+ */
 public interface PhysicsBody {
 	/**
 	 * An enum representing a possible axis of rotation.

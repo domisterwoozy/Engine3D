@@ -1,5 +1,7 @@
 package com.jacobschneider.engine.math.boundingvolumes;
 
+import com.jacobschneider.engine.framework.BoundVolume;
+
 /**
  * This class represents an unordered pair of BoundVolume types.
  * This is used so the framework can determine which overlap test strategy to invoke.

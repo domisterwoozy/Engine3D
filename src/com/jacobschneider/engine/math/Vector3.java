@@ -1,11 +1,11 @@
 package com.jacobschneider.engine.math;
 
 /**
- * Immutable 3 dimensional vector class
+ * Immutable 3 dimensional cartesian vector class
  * @author Jacob
  *
  */
-public class Vector3 {
+public final class Vector3 {
 	private static final double DOUBLE_EQUALITY_THRESHOLD = 0.0000000001;
 	/**
 	 * The zero vector. All elements are zero.

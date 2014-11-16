@@ -1,7 +1,6 @@
-package com.jacobschneider.engine.math.vectorcalc;
+package com.jacobschneider.engine.framework;
 
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.geometry.Manifold;
 
 /**
  * A scaler field over 3 dimensional real space

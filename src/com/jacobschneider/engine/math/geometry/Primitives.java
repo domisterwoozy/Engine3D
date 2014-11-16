@@ -8,9 +8,11 @@ import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 
 import com.jacobschneider.engine.framework.Drawable;
+import com.jacobschneider.engine.framework.Primitive;
+import com.jacobschneider.engine.framework.Segment;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.physics.Collision.CollisionInterface;
+import com.jacobschneider.engine.physics.CollisionInterface;
 
 
 public class Primitives {	

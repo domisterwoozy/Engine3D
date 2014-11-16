@@ -8,7 +8,7 @@ import java.util.List;
  * @author Jacob
  *
  */
-public class Matrix3 {
+public final class Matrix3 {
 	/**
 	 * A 3x3 matrix with all diagonal elements equal to {@link Double#POSITIVE_INFINITY}
 	 */

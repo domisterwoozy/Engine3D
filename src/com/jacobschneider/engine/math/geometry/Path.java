@@ -1,5 +1,6 @@
 package com.jacobschneider.engine.math.geometry;
 
+import com.jacobschneider.engine.framework.Manifold;
 import com.jacobschneider.engine.math.Vector3;
 
 public class Path implements Manifold {

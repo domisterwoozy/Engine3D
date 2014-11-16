@@ -1,5 +1,7 @@
 package com.jacobschneider.engine.math.boundingvolumes;
 
+import com.jacobschneider.engine.framework.BoundVolume;
+import com.jacobschneider.engine.framework.OverlapStrategy;
 import com.jacobschneider.engine.math.Vector3;
 
 
@@ -10,8 +12,8 @@ import com.jacobschneider.engine.math.Vector3;
  * @author Jacob
  *
  */
-public class OverlapStrategyContainer {	
-	static class SphereSphereOverlap implements OverlapStrategy {
+public class OverlapStrategies {	
+	public static class SphereSphereOverlap implements OverlapStrategy {
 		public boolean testOverlap(BoundVolume vol1, BoundVolume vol2) {
 			if (!(vol1 instanceof BoundSphere) || !(vol2 instanceof BoundSphere)) {
 				throw new IllegalArgumentException("Arguments must be of type BoundSphere");
@@ -30,7 +32,7 @@ public class OverlapStrategyContainer {
 		};
 	}
 	
-	static class SphereCircleOverlap implements OverlapStrategy {
+	public static class SphereCircleOverlap implements OverlapStrategy {
 		public boolean testOverlap(BoundVolume vol1, BoundVolume vol2) {
 			// argument checking
 			BoundSphere s = null;
@@ -68,7 +70,7 @@ public class OverlapStrategyContainer {
 		};
 	}
 	
-	static class CircleCircleOverlap implements OverlapStrategy {
+	public static class CircleCircleOverlap implements OverlapStrategy {
 
 		@Override
 		public boolean testOverlap(BoundVolume vol1, BoundVolume vol2) {

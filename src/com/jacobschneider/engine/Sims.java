@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import com.jacobschneider.engine.framework.Universe;
+import com.jacobschneider.engine.framework.PhysicsBody.Axis;
 import com.jacobschneider.engine.input.BasicCameraController;
 import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.Quaternion;
@@ -12,9 +14,8 @@ import com.jacobschneider.engine.math.vectorcalc.CartesianScalerField;
 import com.jacobschneider.engine.physics.BasicUniverse;
 import com.jacobschneider.engine.physics.Bodies;
 import com.jacobschneider.engine.physics.Body;
-import com.jacobschneider.engine.physics.Shape;
-import com.jacobschneider.engine.physics.PhysicsBody.Axis;
-import com.jacobschneider.engine.physics.Universe;
+import com.jacobschneider.engine.physics.RigidShape;
+import com.jacobschneider.engine.physics.Shapes;
 
 /**
  * A collection of static methods that produce sample simulations.
@@ -38,19 +39,19 @@ public class Sims {
 		
 		//List<Body> bList = Body.newRoom(new Vector3(6, 0, 2), 2, 2, 0.5);
 		
-		builder = new Body.Builder(new Vector3(5.0, 2.5, 3), 1.0, Shape.newWall(3, 3));
+		builder = new Body.Builder(new Vector3(5.0, 2.5, 3), 1.0, Shapes.newWall(3, 3));
 		builder.inertiaTensor(Matrix3.IDENTITY.multScaler(1));
 		builder.fixPos();
 		builder.fixAxes(EnumSet.of(Axis.X_AXIS, Axis.Z_AXIS));
 		Body ramp1 = builder.build();	
 		
-		builder = new Body.Builder(new Vector3(7.0, 0, 6), 1.0, Shape.newWall(3, 3));
+		builder = new Body.Builder(new Vector3(7.0, 0, 6), 1.0, Shapes.newWall(3, 3));
 		builder.inertiaTensor(Matrix3.IDENTITY.multScaler(1));
 		builder.fixPos();
 		builder.fixRotationAround(new Vector3(1,1,0), 1.0);
 		Body ramp2 = builder.build();
 		
-		builder = new Body.Builder(new Vector3(0, 0, 0.50001), 1, Shape.newCylinder(0.5, 5.0, 25));
+		builder = new Body.Builder(new Vector3(0, 0, 0.50001), 1, Shapes.newCylinder(0.5, 5.0, 25));
 		Body fulcrum = builder.initialRotation(Quaternion.newQuaternion(Math.PI / 2, Vector3.i)).build();				
 
 		BasicUniverse uni = new BasicUniverse(floor, dropBall, fulcrum, launcher, launchedSquare, ramp1, ramp2);
@@ -183,7 +184,7 @@ public class Sims {
 		
 		BasicUniverse uni = new BasicUniverse(bodies);
 		uni.setGravity(9.8);
-		uni.addScalerPotential(new CartesianScalerField(new double[] {10, 10, 10}, new double[] {2, 2, 2}));
+		//uni.addScalerPotential(new CartesianScalerField(new double[] {10, 10, 10}, new double[] {2, 2, 2}));
 		Simulation sim = Simulation.createSimulation(uni, 1920, 1080, 144);
 		sim.setTimeScale(0.5f);
 		sim.showFrameData(true);

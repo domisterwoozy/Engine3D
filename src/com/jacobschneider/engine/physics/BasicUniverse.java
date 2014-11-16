@@ -9,9 +9,10 @@ import javax.media.opengl.GLAutoDrawable;
 
 import com.jacobschneider.engine.Simulation;
 import com.jacobschneider.engine.framework.Drawable;
+import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.Universe;
+import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.vectorcalc.ScalerField;
-import com.jacobschneider.engine.math.vectorcalc.VectorField;
 import com.jacobschneider.engine.physics.Collision.Contact;
 
 /**
@@ -23,9 +24,12 @@ import com.jacobschneider.engine.physics.Collision.Contact;
  *
  */
 public class BasicUniverse implements Universe,Drawable {
-	private static final float INSTANCE_FORCE_DURATION = 0.00001f;
+	/**
+	 * The duration of an 'instantaneous' force.
+	 */
+	private static final float INSTANT_FORCE_DURATION = 0.00001f;
 	private VectorField forceField;
-	private double gravAccel = 9.8;
+	private double gravAccel = 0;
 	
 	private final List<Body> bodies = new ArrayList<Body>();
 	
@@ -37,7 +41,7 @@ public class BasicUniverse implements Universe,Drawable {
 		for (Body b : bodies) {
 			this.bodies.add(b);
 		}
-		checkIntersection();
+		initialIntersectionCheck();
 	}
 	
 	/**
@@ -46,7 +50,7 @@ public class BasicUniverse implements Universe,Drawable {
 	 */
 	public BasicUniverse(List<Body> bodies) {
 		this.bodies.addAll(bodies);
-		checkIntersection();
+		initialIntersectionCheck();
 	}
 	
 	/**
@@ -76,9 +80,11 @@ public class BasicUniverse implements Universe,Drawable {
 	/**
 	 * Adds a scaler potential to this universe. All objects in this universe
 	 * will undergo a force on each frame equal to the negative gradient
-	 * of this field
+	 * of this field. The reason why you are not able to add a {@link VectorField} directly to this
+	 * universe is to ensure that all forces are conservative.
 	 * @param s the scaler field
 	 */
+	@Override
 	public final void addScalerPotential(ScalerField s) {
 		this.forceField = s.toVectorField();
 	}
@@ -90,13 +96,14 @@ public class BasicUniverse implements Universe,Drawable {
 	 * 
 	 * @param deltaTime Time elapsed since last physics frame.
 	 */
+	@Override
 	public final void update(float deltaTime) {
 		for (int i = 0; i < bodies.size(); i++) {
 			if (bodies.get(i).isFixed()) {
 				continue; // does not move and therefore cannot cause a collision
 			} else {
 				if (forceField != null) {
-					bodies.get(i).thrustInputs(forceField.getValue(bodies.get(i).getX()), Vector3.zero, INSTANCE_FORCE_DURATION);
+					bodies.get(i).thrustInputs(forceField.getValue(bodies.get(i).getX()), Vector3.zero, INSTANT_FORCE_DURATION);
 				}
 				bodies.get(i).update(deltaTime); // moves the object	
 			}
@@ -140,10 +147,16 @@ public class BasicUniverse implements Universe,Drawable {
 		}
 	}
 	
+	private void initialIntersectionCheck() {
+		if (checkIntersection()) {
+			throw new IllegalStateException("Bodies cannot be intersecting when the simulation begins");
+		}
+	}
+	
 	/**
 	 * Determines if any objects are currently overlapping
 	 */
-	private void checkIntersection() {
+	private boolean checkIntersection() {
 		for (int i = 0; i < bodies.size(); i++) {
 			for (int j = 0; j < bodies.size(); j++) { // check for contacts with all other bodies except self
 				if (i == j) {
@@ -151,11 +164,11 @@ public class BasicUniverse implements Universe,Drawable {
 				}
 				List<Contact> contact = bodies.get(i).collisionDetect(bodies.get(j)); // all contacts b/w two specific bodies
 				if (contact != null && contact.size() != 0) {	
-					throw new IllegalStateException("Bodies cannot be intersecting when the simulation begins");	
+					return true;	
 				}		
 				
 			}
 		}
-		
+		return false;		
 	}
 }

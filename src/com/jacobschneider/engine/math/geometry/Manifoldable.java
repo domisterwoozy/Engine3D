@@ -1,7 +1,8 @@
 package com.jacobschneider.engine.math.geometry;
 
+import com.jacobschneider.engine.framework.Manifold;
+import com.jacobschneider.engine.framework.ScalerField;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.vectorcalc.ScalerField;
 
 /**
  * A mixin that should be added to an implementation of {@link ScalerField}.

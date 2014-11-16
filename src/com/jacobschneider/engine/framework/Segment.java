@@ -1,4 +1,4 @@
-package com.jacobschneider.engine.math.geometry;
+package com.jacobschneider.engine.framework;
 
 import com.jacobschneider.engine.math.Vector3;
 

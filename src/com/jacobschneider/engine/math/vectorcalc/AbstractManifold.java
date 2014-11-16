@@ -1,7 +1,7 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
+import com.jacobschneider.engine.framework.Manifold;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.geometry.Manifold;
 
 public abstract class AbstractManifold implements Manifold {
 	private static final double DOUBLE_EQUALITY_TOLERANCE = Math.pow(10, -15);

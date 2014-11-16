@@ -1,8 +1,9 @@
 package com.jacobschneider.engine.math.geometry;
 
+import com.jacobschneider.engine.framework.Manifold;
+import com.jacobschneider.engine.framework.ScalerField;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.vectorcalc.AbstractManifold;
-import com.jacobschneider.engine.math.vectorcalc.ScalerField;
 
 public class ScalerFieldManifold extends AbstractManifold {	
 	private final ScalerField s;
@@ -38,6 +39,4 @@ public class ScalerFieldManifold extends AbstractManifold {
 	public boolean isOnManifold(Vector3 point) {
 		return (s.getValue(point) == potential);
 	}
-
-
 }

@@ -22,10 +22,10 @@ import javax.media.opengl.glu.GLU;
 
 import com.jacobschneider.engine.framework.Drawable;
 import com.jacobschneider.engine.framework.InputListener;
+import com.jacobschneider.engine.framework.Universe;
 import com.jacobschneider.engine.input.InputHandler;
 import com.jacobschneider.engine.input.InputHandler.EngineAction;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.physics.Universe;
 import com.jogamp.opengl.util.FPSAnimator;
 
 /**

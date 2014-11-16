@@ -1,16 +1,17 @@
-package com.jacobschneider.engine.math.geometry;
+package com.jacobschneider.engine.framework;
 
 import java.util.List;
 
-import com.jacobschneider.engine.physics.Shape;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.physics.Collision.CollisionInterface;
+import com.jacobschneider.engine.physics.CollisionInterface;
+import com.jacobschneider.engine.physics.RigidShape;
+
 
 /**
  * Interface for a primitive object. A primitive object is the lowest level collidable object in the engine.
  * All implementations of this interface should be immutable.
  * Any implementation that can define {@link #getSegments()} and {@link #intersectSegment(Segment)} is a valid primitive.
- * A {@link Shape} object is made up of a set of these primitives.
+ * A {@link RigidShape} object is made up of a set of these primitives.
  * 
  * @author Jacob
  *

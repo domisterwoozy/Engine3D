@@ -13,11 +13,14 @@ import javax.media.opengl.GLAutoDrawable;
 
 import com.jacobschneider.engine.Simulation;
 import com.jacobschneider.engine.framework.Drawable;
+import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.Universe;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.physics.Collision.Contact;
 
 /**
  * A container for {@link Body} objects. Also handles the collisions that occur between bodies.
+ * Implementation not complete. Do not use.
  * 
  * @author Jacob
  *
@@ -177,6 +180,12 @@ public class ParallelUniverse implements Universe,Drawable {
 				
 			}
 		}
+		
+	}
+
+	@Override
+	public void addScalerPotential(ScalerField s) {
+		throw new UnsupportedOperationException("Not yet implemented");
 		
 	}
 }

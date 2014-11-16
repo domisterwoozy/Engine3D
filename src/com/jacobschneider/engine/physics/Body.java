@@ -9,22 +9,25 @@ import java.util.Set;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 
+import com.jacobschneider.engine.framework.BoundVolume;
 import com.jacobschneider.engine.framework.Drawable;
+import com.jacobschneider.engine.framework.Manifold;
+import com.jacobschneider.engine.framework.PhysicsBody;
+import com.jacobschneider.engine.framework.PhysicsBody.Axis;
+import com.jacobschneider.engine.framework.Shape;
 import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.boundingvolumes.BoundNull;
-import com.jacobschneider.engine.math.boundingvolumes.BoundVolume;
-import com.jacobschneider.engine.math.geometry.Manifold;
-import com.jacobschneider.engine.physics.Collision.CollisionInterface;
 import com.jacobschneider.engine.physics.Collision.Contact;
-import com.jacobschneider.engine.physics.PhysicsBody.Axis;
 
 /**
  * Holds information about a single body.
  * This includes the material, the shape, the bounding volume, and the physics.
  * Also contains a {@link Drawable} mixin that is called by {@link BasicUniverse}.
  * Can be created by a {@link Builder} or through one of the static factory methods in {@link Bodies}.
+ * This is the only implementation allowed by the engine at this time. This is done in order to not expose
+ * the collision detection engine.
  * 
  * @author Jacob
  *
@@ -98,7 +101,7 @@ public class Body implements Drawable {
 		 * @param shape New shape of the body
 		 * @return The updated {@link Builder} object
 		 */
-		public Builder changeShape(Shape shape) {this.shape = new Shape(shape); return this;};
+		public Builder changeShape(RigidShape shape) {this.shape = new RigidShape(shape); return this;};
 		
 		/**
 		 * Changes the mass of the body. If the body's position was fixed
@@ -236,8 +239,21 @@ public class Body implements Drawable {
 		if (builder.constraint != null) {
 			this.rigidBody.constrainBody(builder.constraint);
 		}
-	}	
-
+	}
+	
+	/**
+	 * Custom body called through {@link Bodies#customBody()}
+	 * @param physicsBody
+	 * @param shape
+	 * @param mat
+	 * @param bound
+	 */
+	Body(PhysicsBody physicsBody, Shape shape, Material mat, BoundVolume bound) {
+		this.mat = mat;
+		this.shape = shape;
+		this.rigidBody = physicsBody;
+		this.boundingVolume = bound;
+	}
 	
 	/**
 	 * Updates the Body by one physics frame.
@@ -245,26 +261,7 @@ public class Body implements Drawable {
 	 */
 	public void update(float deltaTime) {
 		move(deltaTime);
-	}
-	
-	/**
-	 * Draws the Body graphically in the window. 
-	 * 
-	 * @param drawable JOGL drawable object to draw to
-	 */
-	@Override
-	public void draw(GLAutoDrawable drawable) {
-		GL2 gl = drawable.getGL().getGL2();
-		
-		// rotates into the bodies frame of reference
-		gl.glLoadIdentity();                // reset the model-view matrix		
-	    double[] x = rigidBody.getX().toArray();
-	    gl.glTranslated(x[0], x[1], x[2]);    // translate left and into the screen	    
-	    double mag = Math.sqrt( 1 - rigidBody.getQ().s*rigidBody.getQ().s);
-	    gl.glRotated(Math.toDegrees(2 * Math.acos(rigidBody.getQ().s)), rigidBody.getQ().v.x / mag, rigidBody.getQ().v.y / mag, rigidBody.getQ().v.z / mag); // rotate about the y-axis
-	    
-		shape.draw(drawable);
-	}
+	}	
 	
 	private void move(float deltaTime) {
 		rigidBody.update(deltaTime);
@@ -338,6 +335,27 @@ public class Body implements Drawable {
 	 */
 	public boolean isFixed() {
 		return rigidBody.isFixed();
+	}
+	
+	/**
+	 * Draws the Body graphically in the window. 
+	 * 
+	 * @param drawable JOGL drawable object to draw to
+	 */
+	@Override
+	public void draw(GLAutoDrawable drawable) {
+		GL2 gl = drawable.getGL().getGL2();
+		
+		// rotates into the bodies frame of reference
+		gl.glLoadIdentity();                // reset the model-view matrix		
+	    double[] x = rigidBody.getX().toArray();
+	    gl.glTranslated(x[0], x[1], x[2]);    // translate left and into the screen	    
+	    double mag = Math.sqrt( 1 - rigidBody.getQ().s*rigidBody.getQ().s);
+	    gl.glRotated(Math.toDegrees(2 * Math.acos(rigidBody.getQ().s)), rigidBody.getQ().v.x / mag, rigidBody.getQ().v.y / mag, rigidBody.getQ().v.z / mag); // rotate about the y-axis
+	    
+	    if (shape instanceof Drawable) {
+	    	((Drawable) shape).draw(drawable);
+	    }
 	}
 
 

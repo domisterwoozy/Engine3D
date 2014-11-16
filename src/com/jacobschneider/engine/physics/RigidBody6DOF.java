@@ -4,11 +4,12 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import com.jacobschneider.engine.framework.Manifold;
+import com.jacobschneider.engine.framework.PhysicsBody;
+import com.jacobschneider.engine.framework.Segment;
 import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.geometry.Manifold;
-import com.jacobschneider.engine.math.geometry.Segment;
 
 /**
  * A perfect rigid body physics object with a full 6 degrees of freedom. 

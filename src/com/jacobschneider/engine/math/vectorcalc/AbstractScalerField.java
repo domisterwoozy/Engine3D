@@ -1,7 +1,8 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
+import com.jacobschneider.engine.framework.Manifold;
+import com.jacobschneider.engine.framework.ScalerField;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.geometry.Manifold;
 import com.jacobschneider.engine.math.geometry.ScalerFieldManifold;
 
 /**

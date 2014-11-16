@@ -1,5 +1,7 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
+import com.jacobschneider.engine.framework.VectorField;
+
 
 /**
  * Skeleton implementation of a {@link VectorField}

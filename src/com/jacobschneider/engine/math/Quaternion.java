@@ -13,7 +13,7 @@ package com.jacobschneider.engine.math;
  * @author Jacob
  *
  */
-public class Quaternion {
+public final class Quaternion {
 	public static final Quaternion identity = new Quaternion(1, Vector3.zero);
 	public static final Quaternion zero = new Quaternion(0, Vector3.zero);
 	

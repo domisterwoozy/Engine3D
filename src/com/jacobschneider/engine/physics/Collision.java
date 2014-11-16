@@ -2,71 +2,22 @@ package com.jacobschneider.engine.physics;
 
 import java.util.List;
 
+import com.jacobschneider.engine.framework.PhysicsBody;
 import com.jacobschneider.engine.math.Vector3;
 
 /**
  * Represents all the all of the contacts that occur on one body in a single physics frame.
- * The heart of the engine is implemented here. This entire class is hidden from the client
- * except for a useful struct called {@link CollisionInterface}.
+ * The heart of the engine is implemented here.
  * 
  * @author Jacob
  *
  */
-public class Collision {
+final class Collision {
 	private static enum ContactType {
 		Colliding,Resting,Receding
 	};
 
-	/**
-	 * A lightweight struct that holds data describing a single contact.
-	 * @author Jacob
-	 *
-	 */
-	public static class CollisionInterface {
-		public final Vector3 r; // point
-		public final Vector3 n; // plane normal that intersects point
 		
-		
-		public CollisionInterface(Vector3 r, Vector3 n) {
-			this.r = r;
-			this.n = n;
-		}
-		
-		public static List<CollisionInterface> flipNormals(List<CollisionInterface> inters) {
-			for (int i = 0; i < inters.size(); i++) {
-				inters.set(i, new CollisionInterface(inters.get(i).r, inters.get(i).n.inverse()));
-			}
-			return inters;
-		}
-		
-		@Override
-		public boolean equals(Object o) {
-			if (!(o instanceof CollisionInterface)) {
-				return false;
-			}
-			CollisionInterface otherInter = (CollisionInterface) o;
-			if (otherInter == this) {
-				return true;
-			}
-			if (!otherInter.r.equals(this.r)) {
-				return false;
-			}
-			if (!otherInter.n.equals(this.n)) {
-				return false;
-			}
-			
-			return true;		
-		}
-		
-		@Override
-		public int hashCode() {
-			int result = 17;
-			result = 31 * result + r.hashCode();
-			result = 31 * result + n.hashCode();
-			return result;
-		}
-	}
-	
 	// engine constants, always be tuning
 	private static final int MAX_LOOPS = 100;
 	private static final double RESTING_THRESHOLD = 0.01;
@@ -106,13 +57,16 @@ public class Collision {
 		}
 	}
 	
-	void collide() {	
-//		collideUntilDone();
-		for (int i = 0; i < contacts.length; i++) {
-			if (contacts[i].getContactType(0) == ContactType.Colliding) {
-				contacts[i].collide();
-			}
-		}		
+	/**
+	 * Reconciles all the contacts in this collision. Calculates impulses between bodies and enacts the impulses.
+	 */
+	public void collide() {	
+		collideUntilDone();
+//		for (int i = 0; i < contacts.length; i++) {
+//			if (contacts[i].getContactType(0) == ContactType.Colliding) {
+//				contacts[i].collide();
+//			}
+//		}		
 	}	
 	
 	/**
@@ -182,7 +136,6 @@ public class Collision {
 		 * Heart and soul of the engine
 		 * The "collision plane" is the plane defined by the normal n.
 		 * The "parallel plane" is the plane vRel and the normal n are in. Defined by nPerp.
-		 * @return The impulse applied to {@link PhysicsBody} 'a'.
 		 */
 		private void collide() {					
 			double j = getNormalImpulse(); 

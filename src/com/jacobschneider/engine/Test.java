@@ -6,31 +6,32 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.jacobschneider.engine.framework.Manifold;
+import com.jacobschneider.engine.framework.Primitive;
+import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.Universe;
+import com.jacobschneider.engine.framework.VectorField;
+import com.jacobschneider.engine.framework.PhysicsBody.Axis;
 import com.jacobschneider.engine.input.BasicBodyController;
 import com.jacobschneider.engine.input.BasicCameraController;
 import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.geometry.Line;
-import com.jacobschneider.engine.math.geometry.Manifold;
 import com.jacobschneider.engine.math.geometry.Manifoldable;
 import com.jacobschneider.engine.math.geometry.Plane;
-import com.jacobschneider.engine.math.geometry.Primitive;
 import com.jacobschneider.engine.math.geometry.Primitives.Circle;
 import com.jacobschneider.engine.math.geometry.Primitives.OpenCylinder;
 import com.jacobschneider.engine.math.vectorcalc.CartesianScalerField;
-import com.jacobschneider.engine.math.vectorcalc.ScalerField;
-import com.jacobschneider.engine.math.vectorcalc.VectorField;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.physics.BasicUniverse;
 import com.jacobschneider.engine.physics.Bodies;
 import com.jacobschneider.engine.physics.Body;
-import com.jacobschneider.engine.physics.Shape;
-import com.jacobschneider.engine.physics.Universe;
-import com.jacobschneider.engine.physics.PhysicsBody.Axis;
+import com.jacobschneider.engine.physics.RigidShape;
 
 
 public class Test {
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
+		Sims.fallingBlocks();
 		
 	}
 	
@@ -89,7 +90,7 @@ public class Test {
 		prims.add(new OpenCylinder(Vector3.zero, Vector3.j, 2, 3, 100));
 		prims.add(new Circle(Vector3.zero.add(Vector3.j), Vector3.j, 3, 100));
 		prims.add(new Circle(Vector3.zero.subtract(Vector3.j), Vector3.j, 3, 100));
-		Shape shape = new Shape(prims);
+		RigidShape shape = new RigidShape(prims);
 		Body.Builder builder = new Body.Builder(new Vector3(0,0,15), 1, shape);
 		//builder.initialOmega(new Vector3(0.1,0.1,0.1));
 		Body disk = builder.build();

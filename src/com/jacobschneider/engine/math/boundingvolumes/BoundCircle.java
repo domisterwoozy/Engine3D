@@ -1,5 +1,6 @@
 package com.jacobschneider.engine.math.boundingvolumes;
 
+import com.jacobschneider.engine.framework.BoundVolume;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
 

@@ -1,5 +1,6 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
+import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.math.Vector3;
 
 /**
