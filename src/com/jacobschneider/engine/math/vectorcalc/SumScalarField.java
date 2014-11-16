@@ -1,6 +1,6 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.math.Vector3;
 
@@ -10,9 +10,9 @@ import com.jacobschneider.engine.math.Vector3;
  * @author Jacob
  *
  */
-public class SumScalerField extends AbstractScalerField {
-	private final ScalerField a;
-	private final ScalerField b;
+public class SumScalarField extends AbstractScalarField {
+	private final ScalarField a;
+	private final ScalarField b;
 	
 	/**
 	 * Creates a new vector field that represents the scaler addition
@@ -20,7 +20,7 @@ public class SumScalerField extends AbstractScalerField {
 	 * @param a first scaler field to sum
 	 * @param b second scaler field to sum
 	 */
-	public SumScalerField(ScalerField a, ScalerField b) {
+	public SumScalarField(ScalarField a, ScalarField b) {
 		this.a = a;
 		this.b = b;
 	}

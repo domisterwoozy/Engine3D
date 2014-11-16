@@ -11,11 +11,11 @@ import javax.media.opengl.GLAutoDrawable;
 
 import com.jacobschneider.engine.Simulation;
 import com.jacobschneider.engine.framework.Drawable;
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.Universe;
 import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.vectorcalc.TranslateableScalerField;
+import com.jacobschneider.engine.math.vectorcalc.TranslateableScalarField;
 import com.jacobschneider.engine.math.vectorcalc.TranslateableVectorField;
 import com.jacobschneider.engine.physics.Collision.Contact;
 
@@ -87,7 +87,7 @@ public final class BasicUniverse implements Universe,Drawable {
 	 * @param s the scaler field
 	 */
 	@Override
-	public void addScalerPotential(ScalerField s) {
+	public void addScalerPotential(ScalarField s) {
 		this.forceField = s.toVectorField();
 	}
 	
@@ -100,11 +100,11 @@ public final class BasicUniverse implements Universe,Drawable {
 	 * @param s the scaler potential
 	 */
 	@Override
-	public void addBodyPotential(Body b, ScalerField s) {
+	public void addBodyPotential(Body b, ScalarField s) {
 		if (!bodies.contains(b)) {
 			throw new IllegalArgumentException("The universe does not contain this body");
 		}
-		bodyForces.put(b, new TranslateableScalerField(s).toVectorField());
+		bodyForces.put(b, new TranslateableScalarField(s).toVectorField());
 	}
 	
 	/**

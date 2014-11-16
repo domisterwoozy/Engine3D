@@ -13,7 +13,7 @@ import javax.media.opengl.GLAutoDrawable;
 
 import com.jacobschneider.engine.Simulation;
 import com.jacobschneider.engine.framework.Drawable;
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.Universe;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.physics.Collision.Contact;
@@ -184,13 +184,13 @@ public class ParallelUniverse implements Universe,Drawable {
 	}
 
 	@Override
-	public void addScalerPotential(ScalerField s) {
+	public void addScalerPotential(ScalarField s) {
 		throw new UnsupportedOperationException("Not yet implemented");
 		
 	}
 
 	@Override
-	public void addBodyPotential(Body b, ScalerField s) {
+	public void addBodyPotential(Body b, ScalarField s) {
 		throw new UnsupportedOperationException("Not yet implemented");		
 	}
 }

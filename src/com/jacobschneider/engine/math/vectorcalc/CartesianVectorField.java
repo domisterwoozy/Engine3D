@@ -3,11 +3,11 @@ package com.jacobschneider.engine.math.vectorcalc;
 import com.jacobschneider.engine.math.Vector3;
 
 public class CartesianVectorField extends AbstractVectorField {
-	public final CartesianScalerField x;
-	public final CartesianScalerField y;
-	public final CartesianScalerField z;
+	public final CartesianScalarField x;
+	public final CartesianScalarField y;
+	public final CartesianScalarField z;
 	
-	public CartesianVectorField(CartesianScalerField xComp, CartesianScalerField yComp, CartesianScalerField zComp) {
+	public CartesianVectorField(CartesianScalarField xComp, CartesianScalarField yComp, CartesianScalarField zComp) {
 		this.x = xComp;
 		this.y = yComp;
 		this.z = zComp;		

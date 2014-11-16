@@ -1,7 +1,7 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
 import com.jacobschneider.engine.framework.Manifold;
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.geometry.ScalerFieldManifold;
 
@@ -11,13 +11,13 @@ import com.jacobschneider.engine.math.geometry.ScalerFieldManifold;
  * @author Jacob
  *
  */
-public abstract class AbstractScalerField implements ScalerField {
+public abstract class AbstractScalarField implements ScalarField {
 	private static final double STEP_SIZE = 10000;
 	private static final double DOUBLE_EQUALITY_TOLERANCE = Math.pow(10, -2);
 
 	@Override
-	public ScalerField add(ScalerField otherField) {
-		return new SumScalerField(this, otherField);
+	public ScalarField add(ScalarField otherField) {
+		return new SumScalarField(this, otherField);
 	}
 	
 	@Override

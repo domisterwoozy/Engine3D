@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.jacobschneider.engine.framework.Manifold;
 import com.jacobschneider.engine.framework.Primitive;
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.Universe;
 import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.framework.PhysicsBody.Axis;
@@ -20,7 +20,7 @@ import com.jacobschneider.engine.math.geometry.Manifoldable;
 import com.jacobschneider.engine.math.geometry.Plane;
 import com.jacobschneider.engine.math.geometry.Primitives.Circle;
 import com.jacobschneider.engine.math.geometry.Primitives.OpenCylinder;
-import com.jacobschneider.engine.math.vectorcalc.CartesianScalerField;
+import com.jacobschneider.engine.math.vectorcalc.CartesianScalarField;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.physics.BasicUniverse;
@@ -59,7 +59,7 @@ public class Test {
 	}
 	
 	public static void test1() {
-		ScalerField gravity = new CartesianScalerField(new double[] {1, 1, 1}, new double[] {2, 2, 2});		
+		ScalarField gravity = new CartesianScalarField(new double[] {1, 1, 1}, new double[] {2, 2, 2});		
 		
 		Body sun1 = Bodies.newBall(new Vector3(0, 0, 20), Vector3.i, 1, 25, 10);
 		Body sun2 = Bodies.newBall(new Vector3(0, 0, 25), Vector3.i.inverse(), 1, 25, 10);

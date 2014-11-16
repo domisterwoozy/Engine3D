@@ -10,7 +10,7 @@ import com.jacobschneider.engine.input.BasicCameraController;
 import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
-import com.jacobschneider.engine.math.vectorcalc.CartesianScalerField;
+import com.jacobschneider.engine.math.vectorcalc.CartesianScalarField;
 import com.jacobschneider.engine.physics.BasicUniverse;
 import com.jacobschneider.engine.physics.Bodies;
 import com.jacobschneider.engine.physics.Body;

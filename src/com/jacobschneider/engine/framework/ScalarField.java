@@ -8,7 +8,7 @@ import com.jacobschneider.engine.math.Vector3;
  * @author Jacob
  *
  */
-public interface ScalerField {
+public interface ScalarField {
 	/**
 	 * The scaler value returned by this scaler field
 	 * at a certain point in space
@@ -39,7 +39,7 @@ public interface ScalerField {
 	 * @param otherField the other scaler field to be summed
 	 * @return the resulting sum
 	 */
-	public ScalerField add(ScalerField otherField);
+	public ScalarField add(ScalarField otherField);
 
 	/**
 	 * Converts this scaler field to a manifold at a certain potential

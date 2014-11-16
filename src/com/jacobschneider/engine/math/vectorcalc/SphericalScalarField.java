@@ -16,7 +16,7 @@ import com.jacobschneider.engine.math.Vector3;
  *
  */
 
-public class SphericalScalerField extends AbstractScalerField {
+public class SphericalScalarField extends AbstractScalarField {
 	private final double A,B,C; // coefficients
 	private final double a,b,c; // exponents
 	
@@ -30,7 +30,7 @@ public class SphericalScalerField extends AbstractScalerField {
 	 * second, and third elements of the array represent a, b, and c respectively.
 	 * Must be of length 3.
 	 */
-	public SphericalScalerField(double[] coefficients, double[] exponents) {
+	public SphericalScalarField(double[] coefficients, double[] exponents) {
 		if (coefficients.length != 3) {
 			throw new IllegalArgumentException("Coefficients array must have 3 values. Consider using a value of one.");
 		}

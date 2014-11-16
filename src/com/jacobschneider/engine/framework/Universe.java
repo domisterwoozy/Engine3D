@@ -32,7 +32,7 @@ public interface Universe {
 	 * universe is to ensure that all forces are conservative.
 	 * @param s the scaler field
 	 */
-	public void addScalerPotential(ScalerField s);
+	public void addScalerPotential(ScalarField s);
 
 	/**
 	 * Adds a scaler potential to a {@link Body} in the universe. If the body does not exist
@@ -42,6 +42,6 @@ public interface Universe {
 	 * @param b the body to attach the scaler potential to
 	 * @param s the scaler potential
 	 */
-	public void addBodyPotential(Body b, ScalerField s);
+	public void addBodyPotential(Body b, ScalarField s);
 
 }

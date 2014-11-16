@@ -1,23 +1,23 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
 import com.jacobschneider.engine.framework.Manifold;
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.geometry.ScalerFieldManifold;
 
 /**
- * A mutable wrapper that allows you to move a {@link ScalerField} in the world.
+ * A mutable wrapper that allows you to move a {@link ScalarField} in the world.
  * 
  * @author Jacob
  *
  */
-public class TranslateableScalerField implements ScalerField {
-	private final ScalerField field;
+public class TranslateableScalarField implements ScalarField {
+	private final ScalarField field;
 	
 	private Vector3 pos = Vector3.zero; // the position of the origin of this scaler field relative to the origin of the incoming points
 	
-	public TranslateableScalerField(ScalerField field) {
+	public TranslateableScalarField(ScalarField field) {
 		this.field = field;
 	}
 	
@@ -45,8 +45,8 @@ public class TranslateableScalerField implements ScalerField {
 	}
 
 	@Override
-	public TranslateableScalerField add(ScalerField otherField) {
-		return new TranslateableScalerField(new SumScalerField(field, otherField));
+	public TranslateableScalarField add(ScalarField otherField) {
+		return new TranslateableScalarField(new SumScalarField(field, otherField));
 	}
 
 	@Override

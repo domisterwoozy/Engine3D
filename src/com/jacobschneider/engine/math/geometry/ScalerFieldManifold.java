@@ -1,21 +1,21 @@
 package com.jacobschneider.engine.math.geometry;
 
 import com.jacobschneider.engine.framework.Manifold;
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.vectorcalc.AbstractManifold;
 
 public class ScalerFieldManifold extends AbstractManifold {	
-	private final ScalerField s;
+	private final ScalarField s;
 	private final double potential;
 	
 	/**
-	 * Creates a {@link Manifold} from a {@link ScalerField} and a potential value
-	 * of the {@link ScalerField}
+	 * Creates a {@link Manifold} from a {@link ScalarField} and a potential value
+	 * of the {@link ScalarField}
 	 * @param s the scaler field
 	 * @param potential the potential value to create the manifold at
 	 */
-	public ScalerFieldManifold(ScalerField s, double potential) {
+	public ScalerFieldManifold(ScalarField s, double potential) {
 		this.s = s;
 		this.potential = potential;
 	}

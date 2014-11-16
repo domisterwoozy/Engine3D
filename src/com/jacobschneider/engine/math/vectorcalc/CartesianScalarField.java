@@ -1,17 +1,17 @@
 package com.jacobschneider.engine.math.vectorcalc;
 
-import com.jacobschneider.engine.framework.ScalerField;
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.VectorField;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.geometry.Manifoldable;
 
 /**
- * An implementation of {@link ScalerField} of the form f(x,y,z) = A*x^a + B*y^b + C*z^c.
+ * An implementation of {@link ScalarField} of the form f(x,y,z) = A*x^a + B*y^b + C*z^c.
  * 
  * @author Jacob
  *
  */
-public class CartesianScalerField extends AbstractScalerField implements Manifoldable {
+public class CartesianScalarField extends AbstractScalarField implements Manifoldable {
 	private final double A,B,C; // coefficients
 	private final double a,b,c; // exponents
 	
@@ -25,7 +25,7 @@ public class CartesianScalerField extends AbstractScalerField implements Manifol
 	 * second, and third elements of the array represent a, b, and c respectively.
 	 * Must be of length 3.
 	 */
-	public CartesianScalerField(double[] coefficients, double[] exponents) {
+	public CartesianScalarField(double[] coefficients, double[] exponents) {
 		if (coefficients.length != 3) {
 			throw new IllegalArgumentException("Coefficients array must have 3 values. Consider using a value of one.");
 		}
@@ -53,9 +53,9 @@ public class CartesianScalerField extends AbstractScalerField implements Manifol
 	
 	@Override
 	public VectorField toVectorField() {
-		return new CartesianVectorField(new CartesianScalerField(new double[] {-a * A, 0, 0}, new double[] {a - 1, 0, 0}),
-				new CartesianScalerField(new double[] {0, -b * B, 0}, new double[] {0, b - 1, 0}),
-				new CartesianScalerField(new double[] {0, 0, -c * C}, new double[] {0, 0, c - 1}));
+		return new CartesianVectorField(new CartesianScalarField(new double[] {-a * A, 0, 0}, new double[] {a - 1, 0, 0}),
+				new CartesianScalarField(new double[] {0, -b * B, 0}, new double[] {0, b - 1, 0}),
+				new CartesianScalarField(new double[] {0, 0, -c * C}, new double[] {0, 0, c - 1}));
 	}	
 	
 	/**
