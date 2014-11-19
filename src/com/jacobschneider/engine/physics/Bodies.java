@@ -47,7 +47,7 @@ public class Bodies {
 		double I = (2.0/5.0) * mass * radius * radius * fudgeFactor;
 		Matrix3 inertiaBody = Matrix3.IDENTITY.multScaler(I);
 		BoundVolume boundingVolume = new BoundSphere(centerPos, radius);		
-		RigidShape shape = Shapes.newBall(centerPos, radius, rank);
+		BasicShape shape = Shapes.newBall(centerPos, radius, rank);
 		Material mat = new Material(1.0, 1.0, 1.0); // extra bouncy material (79 is approximately elastic with a 1.0 object)
 		Builder builder = new Builder(centerPos, mass, shape);
 		return builder.inertiaTensor(inertiaBody).material(mat).boundVolume(boundingVolume).initialVelocity(vel).build();
@@ -69,7 +69,7 @@ public class Bodies {
 										    0,(1.0/12.0)*mass*(w*w + d*d),0,
 										    0,0,(1.0/12.0)*mass*(h*h + w*w)};
 		BoundVolume boundingVolume = new BoundSphere(centerPos, Math.sqrt(w*w+h*h+d*d));
-		RigidShape shape = Shapes.newCuboid(w/2, h/2, d/2);
+		BasicShape shape = Shapes.newCuboid(w/2, h/2, d/2);
 		Builder builder = new Builder(centerPos, mass, shape);
 		return builder.inertiaTensor(Matrix3.fromColArray(inertiaBody)).boundVolume(boundingVolume).initialVelocity(velocity).build();
 	}
@@ -94,7 +94,7 @@ public class Bodies {
 		Quaternion q0 = Quaternion.newQuaternion(Math.acos(cosTheta), rotDir);		
 		
 		BoundVolume boundVol = new BoundCircle(dirArr, centerPos, Math.sqrt(w*w + h*h) / 2);
-		RigidShape shape = Shapes.newWall(w, h);
+		BasicShape shape = Shapes.newWall(w, h);
 		Builder builder = new Builder(centerPos, 1, shape);
 		Body b = builder.initialRotation(q0).boundVolume(boundVol).fixBody().build();
 		return b;

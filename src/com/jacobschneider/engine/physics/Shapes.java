@@ -21,10 +21,10 @@ public class Shapes {
 	 * @param rank The complexity of the ball. The higher the rank the more accurate the simulation but performance suffers.
 	 * @return A shape object representing a ball
 	 */
-	public static RigidShape newBall(Vector3 x, double r, int rank) {
+	public static BasicShape newBall(Vector3 x, double r, int rank) {
 		Set<Primitive> prims = new HashSet<Primitive>();
 		prims.add(new Sphere(Vector3.zero, r, rank));
-		return new RigidShape(prims);
+		return new BasicShape(prims);
 	}	
 	
 	/**
@@ -34,7 +34,7 @@ public class Shapes {
 	 * @param z height
 	 * @return A shape object representing a cuboid
 	 */
-	public static RigidShape newCuboid(double x, double y, double z) {
+	public static BasicShape newCuboid(double x, double y, double z) {
 		List<Vector3> verts = new ArrayList<Vector3>();
 		verts.add(new Vector3(x,y,z));
 		verts.add(new Vector3(-x,y,z));
@@ -59,7 +59,7 @@ public class Shapes {
 		prims.add(new Triangle(verts.get(1),verts.get(6),verts.get(2)));
 		prims.add(new Triangle(verts.get(1),verts.get(5),verts.get(6)));
 		
-		return new RigidShape(prims);
+		return new BasicShape(prims);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class Shapes {
 	 * @param y length of the wall
 	 * @return The shape object representing a flat plane
 	 */
-	public static RigidShape newWall(double x, double y) {
+	public static BasicShape newWall(double x, double y) {
 		List<Vector3> verts = new ArrayList<Vector3>();
 		verts.add(new Vector3(x / 2,y / 2,0));
 		verts.add(new Vector3(-x / 2,y / 2,0));
@@ -79,7 +79,7 @@ public class Shapes {
 		prims.add(new Triangle(verts.get(0),verts.get(1),verts.get(3)));
 		prims.add(new Triangle(verts.get(1),verts.get(2),verts.get(3)));
 		
-		return new RigidShape(prims);
+		return new BasicShape(prims);
 	}
 	
 	/**
@@ -88,9 +88,9 @@ public class Shapes {
 	 * @param x width of room
 	 * @param y length of room
 	 * @param z height of room
-	 * @return The {@link RigidShape} object representing a room.
+	 * @return The {@link BasicShape} object representing a room.
 	 */
-	public static RigidShape newRoom(double x, double y, double z) {
+	public static BasicShape newRoom(double x, double y, double z) {
 		List<Vector3> verts = new ArrayList<Vector3>();
 		verts.add(new Vector3(x / 2,y / 2, -z / 2)); // 0
 		verts.add(new Vector3(-x / 2,y / 2, -z / 2)); // 1
@@ -122,7 +122,7 @@ public class Shapes {
 		// right wall
 		prims.add(new Triangle(verts.get(0),verts.get(3),verts.get(7)));
 		prims.add(new Triangle(verts.get(0),verts.get(7),verts.get(4)));		
-		return new RigidShape(prims);		
+		return new BasicShape(prims);		
 	}
 	
 	/**
@@ -131,9 +131,9 @@ public class Shapes {
 	 * @param radius the radius of the cylinder
 	 * @param length the length of the cylinder
 	 * @param rank the complexity of the shape. Higher numbers lead to more realistic collisions but worse performance. Recommended 10-100.
-	 * @return The {@link RigidShape} object representing the cylinder.
+	 * @return The {@link BasicShape} object representing the cylinder.
 	 */
-	public static RigidShape newCylinder(double radius, double length, int rank) {
+	public static BasicShape newCylinder(double radius, double length, int rank) {
 		Set<Primitive> prims = new HashSet<Primitive>();
 		// top
 		Primitive top = new Circle(new Vector3(0, 0, length / 2), Vector3.k, radius, rank);
@@ -145,7 +145,7 @@ public class Shapes {
 		prims.add(top);
 		prims.add(bottom);
 		prims.add(cyl);		
-		return new RigidShape(prims);		
+		return new BasicShape(prims);		
 	}
 
 }

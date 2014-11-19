@@ -19,7 +19,7 @@ public interface ScalarField {
 	
 	/**
 	 * The gradient of the scaler field at a certain
-	 * point in the space
+	 * point in Cartesian coordinates
 	 * @param point the point at which to evaluate the gradient of this scaler field
 	 * @return the resulting gradient
 	 */
@@ -51,7 +51,7 @@ public interface ScalarField {
 	/**
 	 * Traverses a path of steepest ascent/descent until
 	 * the desired potential is reached.
-	 * @param point starting point
+	 * @param point starting point in in Cartesian coordinates
 	 * @param desiredPotential the potential you want to reach
 	 * @return the ending point of the path once the potential is reached
 	 */

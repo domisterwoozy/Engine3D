@@ -31,7 +31,12 @@ public class CartesianScalarField extends AbstractScalarField implements Manifol
 		}
 		if (exponents.length != 3) {
 			throw new IllegalArgumentException("Exponents array must have 3 values. Consider using a value of zero.");
-		}		
+		}	
+		for (double d : exponents) {
+			if (d == 1.0) {
+				throw new IllegalArgumentException("You cannot currently enter an exponent equal to one. Support for exoponents of one will be coming soon.");
+			}
+		}
 		this.A = coefficients[0];
 		this.B = coefficients[1];
 		this.C = coefficients[2];		

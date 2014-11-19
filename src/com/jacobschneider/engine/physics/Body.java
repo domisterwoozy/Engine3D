@@ -101,7 +101,7 @@ public class Body implements Drawable {
 		 * @param shape New shape of the body
 		 * @return The updated {@link Builder} object
 		 */
-		public Builder changeShape(RigidShape shape) {this.shape = new RigidShape(shape); return this;};
+		public Builder changeShape(BasicShape shape) {this.shape = new BasicShape(shape); return this;};
 		
 		/**
 		 * Changes the mass of the body. If the body's position was fixed

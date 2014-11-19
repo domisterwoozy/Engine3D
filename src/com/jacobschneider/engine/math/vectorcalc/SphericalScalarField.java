@@ -17,6 +17,8 @@ import com.jacobschneider.engine.math.Vector3;
  */
 
 public class SphericalScalarField extends AbstractScalarField {
+	private static final int NULL_EXPONENT = 10; // when the coefficient is zero the exponent does not matter as long as it does not equal 0 or -1
+	
 	private final double A,B,C; // coefficients
 	private final double a,b,c; // exponents
 	
@@ -36,7 +38,13 @@ public class SphericalScalarField extends AbstractScalarField {
 		}
 		if (exponents.length != 3) {
 			throw new IllegalArgumentException("Exponents array must have 3 values. Consider using a value of zero.");
-		}		
+		}	
+		for (double d : exponents) {
+			if (d == 1.0 || d == 0.0) {
+				throw new IllegalArgumentException("You cannot currently enter an exponent equal to one or zero");
+			}
+		}
+
 		this.A = coefficients[0];
 		this.B = coefficients[1];
 		this.C = coefficients[2];		
@@ -54,7 +62,7 @@ public class SphericalScalarField extends AbstractScalarField {
 	public static double[] getSphericalCoords(Vector3 cartesianCoords) {
 		double r = cartesianCoords.mag();
 		double theta = Math.acos(cartesianCoords.z / r);
-		double phi = Math.atan(cartesianCoords.y / cartesianCoords.x);
+		double phi = Math.atan2(cartesianCoords.y, cartesianCoords.x);
 		return new double[] {r, phi, theta};
 	}
 	
@@ -71,7 +79,12 @@ public class SphericalScalarField extends AbstractScalarField {
 	@Override
 	public double getValue(Vector3 point) {
 		double[] coords = getSphericalCoords(point);
-		return Math.pow(A*coords[0], a) + Math.pow(B*coords[1], b) + Math.pow(C*coords[2], c);
+		System.out.println("*******");
+		System.out.println(B);
+		System.out.println(b);
+		System.out.println(Math.pow(coords[1], b));
+		System.out.println("*******");
+		return A * Math.pow(coords[0], a) + B * Math.pow(coords[1], b) + C * Math.pow(coords[2], c);
 	}
 
 	@Override
@@ -83,7 +96,9 @@ public class SphericalScalarField extends AbstractScalarField {
 
 	@Override
 	public VectorField toVectorField() {
-		throw new UnsupportedOperationException("Not yet implemented");
+		return new SphericalVectorField(new SphericalScalarField(new double[] {-a * A, 0, 0}, new double[] {a - 1, NULL_EXPONENT, NULL_EXPONENT}),
+				new SphericalScalarField(new double[] {NULL_EXPONENT, -b * B, NULL_EXPONENT}, new double[] {NULL_EXPONENT, b - 1, NULL_EXPONENT}),
+				new SphericalScalarField(new double[] {NULL_EXPONENT, NULL_EXPONENT, -c * C}, new double[] {NULL_EXPONENT, NULL_EXPONENT, c - 1}));
 	}
 	
 	/**
@@ -92,7 +107,7 @@ public class SphericalScalarField extends AbstractScalarField {
 	 * @return the resulting derivative
 	 */
 	public double dfdr(double[] spherCoords) {
-		return Math.pow(a*A*spherCoords[0], a-1);
+		return a * A * Math.pow(spherCoords[0], a-1);
 	}
 	
 	/**
@@ -101,7 +116,7 @@ public class SphericalScalarField extends AbstractScalarField {
 	 * @return the resulting derivative
 	 */
 	public double dfdtheta(double[] spherCoords) {		
-		return Math.pow(c*C*spherCoords[2], c-1);
+		return c * C * Math.pow(spherCoords[2], c-1);
 	}
 	
 	/**
@@ -110,7 +125,16 @@ public class SphericalScalarField extends AbstractScalarField {
 	 * @return the resulting derivative
 	 */
 	public double dfdphi(double[] spherCoords) {
-		return Math.pow(b*B*spherCoords[1], b-1);
+		return b * B * Math.pow(spherCoords[1], b-1);
+	}
+	
+	/**
+	 * Calculates the derivative of r times the field with respect to r. d(rf)/dr
+	 * @param spherCoords spherical coordinates
+	 * @return the resulting value
+	 */
+	public double drfdr(double[] spherCoords) {
+		return (a+1) * A * Math.pow(spherCoords[0], a);		
 	}
 	
 	/**
@@ -119,7 +143,18 @@ public class SphericalScalarField extends AbstractScalarField {
 	 * @return the resulting value
 	 */
 	public double dr2fdr(double[] spherCoords) {
-		return Math.pow((a+2)*A*spherCoords[0], a + 1);		
+		return (a+2) * A * Math.pow(spherCoords[0], a + 1);		
+	}
+	
+	/**
+	 * Calculates the derivative of sin(theta) times the field with respect to theta. d(sin(theta)f)/dtheta
+	 * @param spherCoords spherical coordinates
+	 * @return the resulting value
+	 */
+	public double dsinthetafdtheta(double[] spherCoords) {
+		double cosTheta = Math.cos(spherCoords[2]);
+		return A * cosTheta * Math.pow(spherCoords[0], a) + B * cosTheta * Math.pow(spherCoords[1], b) + 
+				C * cosTheta * Math.pow(spherCoords[2], c) + c * C * Math.sin(spherCoords[2]) * Math.pow(spherCoords[2], c - 1);
 	}
 	
 

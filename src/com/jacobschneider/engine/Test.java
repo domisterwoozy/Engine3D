@@ -26,12 +26,13 @@ import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.physics.BasicUniverse;
 import com.jacobschneider.engine.physics.Bodies;
 import com.jacobschneider.engine.physics.Body;
-import com.jacobschneider.engine.physics.RigidShape;
+import com.jacobschneider.engine.physics.BasicShape;
 
 
 public class Test {
 	public static void main(String[] args) {
-		test1();
+		//System.out.println(Math.pow(0, -3));
+		Sims.orbitingBalls();
 		
 	}
 	
@@ -58,23 +59,7 @@ public class Test {
 		sim.startSim();
 	}
 	
-	public static void test1() {
-		ScalarField gravity = new CartesianScalarField(new double[] {1, 1, 1}, new double[] {2, 2, 2});		
-		
-		Body sun1 = Bodies.newBall(new Vector3(0, 0, 20), Vector3.i, 1, 25, 10);
-		Body sun2 = Bodies.newBall(new Vector3(0, 0, 25), Vector3.i.inverse(), 1, 25, 10);
-		
-		Universe uni = new BasicUniverse(sun1, sun2);
-		
-		uni.addBodyPotential(sun1, gravity);
-		uni.addBodyPotential(sun2, gravity);
-		
-		Simulation sim = Simulation.createSimulation(uni);
-		sim.addListener(new BasicCameraController(sim));
-		sim.startSim();
-		
-
-	}
+	
 
 	
 

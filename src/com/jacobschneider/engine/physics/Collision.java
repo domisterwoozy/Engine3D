@@ -1,7 +1,5 @@
 package com.jacobschneider.engine.physics;
 
-import java.util.List;
-
 import com.jacobschneider.engine.framework.PhysicsBody;
 import com.jacobschneider.engine.math.Vector3;
 

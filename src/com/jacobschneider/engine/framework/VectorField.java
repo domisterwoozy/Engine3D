@@ -12,13 +12,13 @@ public interface VectorField {
 	/**
 	 * The value of this vector field at a certain position
 	 * in 3D space.
-	 * @param point the position at which to evaluate the vector field
+	 * @param point the position in Cartesian coordinates at which to evaluate the vector field
 	 * @return the resulting vector
 	 */
 	public Vector3 getValue(Vector3 point);
 	
 	/**
-	 * Evaluates the curl of this vector field at a certain position
+	 * Evaluates the curl of this vector field at a certain position in Cartesian coordinates
 	 * in 3D space
 	 * @param point the position at which to evaluate the curl
 	 * @return the resulting curl vector
@@ -26,9 +26,9 @@ public interface VectorField {
 	public Vector3 curl(Vector3 point);
 	
 	/**
-	 * Evaluates the divergence of this vector field at a certain position
+	 * Evaluates the divergence of this vector field at a certain position in Cartesian coordinates
 	 * in 3D space
-	 * @param point the position at which to evaluate teh curl
+	 * @param point the position at which to evaluate the curl
 	 * @return the resulting curl vector
 	 */
 	public double divergence(Vector3 point);

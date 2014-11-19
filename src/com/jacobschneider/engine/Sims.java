@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import com.jacobschneider.engine.framework.ScalarField;
 import com.jacobschneider.engine.framework.Universe;
 import com.jacobschneider.engine.framework.PhysicsBody.Axis;
 import com.jacobschneider.engine.input.BasicCameraController;
@@ -11,10 +12,11 @@ import com.jacobschneider.engine.math.Matrix3;
 import com.jacobschneider.engine.math.Quaternion;
 import com.jacobschneider.engine.math.Vector3;
 import com.jacobschneider.engine.math.vectorcalc.CartesianScalarField;
+import com.jacobschneider.engine.math.vectorcalc.Potentials;
 import com.jacobschneider.engine.physics.BasicUniverse;
 import com.jacobschneider.engine.physics.Bodies;
 import com.jacobschneider.engine.physics.Body;
-import com.jacobschneider.engine.physics.RigidShape;
+import com.jacobschneider.engine.physics.BasicShape;
 import com.jacobschneider.engine.physics.Shapes;
 
 /**
@@ -64,6 +66,27 @@ public class Sims {
 		//sim.showFrameData(true);
 		sim.startSim();		
 	}	
+	
+	/**
+	 * Two balls orbiting each other
+	 */
+	public static void orbitingBalls() {
+		ScalarField gravity = Potentials.inverseSquare(1.0);	
+		
+		Body sun1 = Bodies.newBall(new Vector3(0, 0, 10), Vector3.i, 1, 25, 10);
+		Body sun2 = Bodies.newBall(new Vector3(0, 0, 5), Vector3.i.inverse(), 1, 25, 10);
+		
+		Universe uni = new BasicUniverse(sun1, sun2);
+		
+		uni.addBodyPotential(sun1, gravity);
+		uni.addBodyPotential(sun2, gravity);
+		
+		Simulation sim = Simulation.createSimulation(uni);
+		sim.addListener(new BasicCameraController(sim));
+		//sim.showFrameData(true);
+		sim.startSim();
+
+	}
 	
 	/**
 	 * A room full of bouncing balls.

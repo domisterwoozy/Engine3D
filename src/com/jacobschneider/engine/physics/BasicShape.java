@@ -23,7 +23,7 @@ import com.jacobschneider.engine.math.Vector3;
  * @author Jacob
  *
  */
-public class RigidShape implements Drawable, Shape {
+public class BasicShape implements Drawable, Shape {
 	private final Primitive[] primitives; // unique set of primitives that make up the shape in body space
 	private final Segment[] segments; // unique set of segments that make up the shape in body space
 	
@@ -32,7 +32,7 @@ public class RigidShape implements Drawable, Shape {
 	 * The origin of this shape must be the center of mass of the shape.
 	 * @param primitives A set of primitives that make up this shape
 	 */
-	public RigidShape(Set<Primitive> primitives) {
+	public BasicShape(Set<Primitive> primitives) {
 		this.primitives = primitives.toArray(new Primitive[0]);
 		
 		// removes duplicate segments
@@ -61,10 +61,10 @@ public class RigidShape implements Drawable, Shape {
 	}
 	
 	/**
-	 * A copy constructor for {@link RigidShape}.
-	 * @param shape The {@link RigidShape} to copy from.
+	 * A copy constructor for {@link BasicShape}.
+	 * @param shape The {@link BasicShape} to copy from.
 	 */
-	public RigidShape(RigidShape shape) {
+	public BasicShape(BasicShape shape) {
 		this.primitives = Arrays.copyOf(shape.primitives, shape.primitives.length);
 		this.segments = Arrays.copyOf(shape.segments, shape.segments.length);
 	}
@@ -93,7 +93,7 @@ public class RigidShape implements Drawable, Shape {
 		// this next line is a tough one
 		// without it => a small fixed object can pass through things
 		// with it => performance suffers
-		contacts.addAll(CollisionInterface.flipNormals(RigidShape.collisionDetectInternal(this, other, otherBody, thisBody))); 
+		contacts.addAll(CollisionInterface.flipNormals(BasicShape.collisionDetectInternal(this, other, otherBody, thisBody))); 
 		return contacts;
 	}
 	

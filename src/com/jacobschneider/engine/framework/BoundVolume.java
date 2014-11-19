@@ -15,10 +15,10 @@ import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategies.CircleCi
 import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategies.SphereCircleOverlap;
 import com.jacobschneider.engine.math.boundingvolumes.OverlapStrategies.SphereSphereOverlap;
 import com.jacobschneider.engine.physics.Body;
-import com.jacobschneider.engine.physics.RigidShape;
+import com.jacobschneider.engine.physics.BasicShape;
 
 /**
- * Represents a bounding volume around a physical object (usually a {@link RigidShape} object).
+ * Represents a bounding volume around a physical object (usually a {@link BasicShape} object).
  * Objects of this type should be mutable and created once at the beginning of a {@link Body}'s existence.
  * If you create a subclass of this class you MUST add corresponding overlap strategies to {@link #putStrategy(OverlapStrategy)}
  * BEFORE you instantiate an object of that subclass.
